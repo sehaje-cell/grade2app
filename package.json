@@ -1,0 +1,8 @@
+{
+  "name": "grade2-adaptive-learning",
+  "version": "2.0.0",
+  "description": "Grade 2 Adaptive Learning - Ontario + CBSE dual curriculum",
+  "main": "server.js",
+  "scripts": { "start": "GRADE=2 node server.js" },
+  "engines": { "node": ">=18.0.0" }
+}

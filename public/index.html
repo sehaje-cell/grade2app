@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Learn & Master</title>
+<style>
+:root{
+  --bg:#FFF8F0; --card:#FFF; --ink:#1F2937; --ink2:#4B5563; --ink3:#9CA3AF;
+  --bdr:#E5E7EB; --radius:18px; --sh:0 4px 20px rgba(0,0,0,.08);
+  --math:#059669; --math-l:#ECFDF5; --math-d:#064E3B;
+  --sci:#0284C7;  --sci-l:#EFF6FF;  --sci-d:#0C4A6E;
+  --read:#EA580C; --read-l:#FFF7ED; --read-d:#7C2D12;
+  --write:#9333EA;--write-l:#FAF5FF;--write-d:#4C1D95;
+  --evs:#0D9488; --evs-l:#F0FDFA; --evs-d:#134E4A;
+  --eng:#BE185D; --eng-l:#FDF2F8; --eng-d:#831843;
+  --hin:#C2410C; --hin-l:#FFF7ED; --hin-d:#7C2D12;
+  --ok:#16A34A; --ok-l:#F0FDF4; --ok-b:#BBF7D0;
+  --bad:#DC2626; --bad-l:#FEF2F2; --bad-b:#FECACA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:17px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased}
+.app{max-width:780px;margin:0 auto;padding:20px 18px 60px}
+.view{display:none;animation:fade .3s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.header{text-align:center;margin:16px 0 22px}
+.badge{display:inline-block;background:#FEF3C7;color:#92400E;padding:5px 14px;
+  border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:2.15rem;font-weight:800;margin:14px 0 8px;letter-spacing:-.02em}
+.sub{color:var(--ink2);font-size:1rem}
+
+/* ── CURRICULUM TOGGLE ───────────────────────── */
+.curriculum-toggle{display:flex;gap:0;background:var(--card);border:1px solid var(--bdr);
+  border-radius:999px;padding:4px;margin:0 auto 22px;max-width:360px;box-shadow:var(--sh)}
+.curriculum-toggle button{flex:1;padding:10px 18px;border:none;background:transparent;
+  border-radius:999px;cursor:pointer;font-weight:700;font-size:.92rem;color:var(--ink2);
+  font-family:inherit;transition:.2s}
+.curriculum-toggle button.active{background:var(--ink);color:#FFF;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.curriculum-toggle .flag{margin-right:6px}
+
+.mastery{background:var(--card);border:1px solid var(--bdr);border-radius:var(--radius);
+  padding:18px 22px;margin-bottom:20px;box-shadow:var(--sh)}
+.mastery-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mastery-label{font-weight:700;font-size:.92rem;color:var(--ink2)}
+.mastery-pct{font-weight:800;font-size:1.5rem}
+.bar{height:10px;background:#F3F4F6;border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#10B981,#059669);border-radius:999px;transition:width .5s ease}
+
+.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:520px){.subjects{grid-template-columns:1fr}}
+.subject{background:var(--card);border:1px solid var(--bdr);border-radius:var(--radius);
+  padding:18px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.subject:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
+.subject-icon{font-size:2rem;margin-bottom:8px;display:block}
+.subject-name{font-weight:800;font-size:1.1rem;margin-bottom:4px}
+.subject-desc{font-size:.84rem;color:var(--ink2);margin-bottom:10px;min-height:2.3em}
+.subject-progress{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ink2)}
+.subject-progress .bar{flex:1}
+.subject.mastered::after{content:"🏆";position:absolute;top:12px;right:12px;font-size:1.3rem}
+
+.howto{margin-top:22px;padding:14px 16px;background:#FFFBEB;border:1px solid #FDE68A;
+  border-radius:14px;font-size:.9rem;color:var(--ink2)}
+.howto b{color:var(--ink)}
+.target{display:inline-block;margin-top:6px;font-weight:700;color:var(--math-d)}
+
+.learn-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}
+.back{background:none;border:none;font-size:1rem;color:var(--ink2);cursor:pointer;padding:8px 12px;border-radius:8px;font-weight:600}
+.back:hover{background:#F3F4F6}
+.pills{display:flex;gap:6px;align-items:center}
+.pill{padding:5px 12px;border-radius:999px;font-weight:700;font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;background:#F3F4F6;color:var(--ink2)}
+
+.session-bar{background:var(--card);border:1px solid var(--bdr);border-radius:var(--radius);
+  padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;gap:10px;font-size:.86rem;font-weight:600;color:var(--ink2);flex-wrap:wrap}
+.session-bar .stat{display:flex;align-items:center;gap:5px}
+.session-bar .stat b{color:var(--ink);font-size:.98rem}
+
+.q-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:var(--sh);margin-bottom:14px}
+.q-meta{font-size:.76rem;color:var(--ink3);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+.q-text{font-size:1.2rem;font-weight:700;line-height:1.5;margin-bottom:18px;color:var(--ink)}
+.choices{display:grid;gap:10px}
+.choice{background:#F9FAFB;border:2px solid var(--bdr);border-radius:12px;
+  padding:14px 16px;font-size:1.02rem;text-align:left;cursor:pointer;transition:.15s;
+  font-family:inherit;color:var(--ink);font-weight:500}
+.choice:hover:not(:disabled){background:#F3F4F6;border-color:var(--ink3)}
+.choice:disabled{cursor:not-allowed;opacity:.6}
+.choice.correct{background:var(--ok-l);border-color:var(--ok);color:var(--math-d);font-weight:700}
+.choice.wrong{background:var(--bad-l);border-color:var(--bad);color:#7F1D1D}
+.choice .letter{display:inline-block;width:24px;height:24px;border-radius:6px;
+  background:#E5E7EB;margin-right:10px;text-align:center;line-height:24px;font-weight:700;font-size:.85rem}
+.choice.correct .letter{background:var(--ok);color:#FFF}
+.choice.wrong .letter{background:var(--bad);color:#FFF}
+
+.hint-btn{background:none;border:1px dashed var(--ink3);color:var(--ink2);
+  padding:8px 14px;border-radius:8px;font-size:.85rem;cursor:pointer;margin-top:14px;font-family:inherit}
+.hint-btn:hover{background:#F9FAFB}
+.hint-box{margin-top:10px;padding:11px 14px;background:#FEF3C7;border-radius:10px;font-size:.92rem;color:#78350F;display:none}
+.hint-box.show{display:block}
+
+.lesson{background:var(--card);border-radius:var(--radius);padding:20px 22px;
+  box-shadow:var(--sh);margin-bottom:14px;border-left:6px solid var(--ok)}
+.lesson.wrong{border-left-color:var(--bad)}
+.lesson-headline{font-size:1.22rem;font-weight:800;margin-bottom:8px}
+.lesson.ok .lesson-headline{color:var(--math-d)}
+.lesson.wrong .lesson-headline{color:#7F1D1D}
+.lesson-text{font-size:1rem;color:var(--ink);margin-bottom:10px;line-height:1.6}
+.lesson-tip{background:#F0F9FF;border-radius:10px;padding:10px 14px;font-size:.92rem;color:var(--sci-d);font-weight:600}
+.lesson-tip::before{content:"💡 ";font-size:1.05rem}
+
+.next-btn{width:100%;padding:15px;background:var(--ink);color:#FFF;border:none;
+  border-radius:12px;font-size:1.02rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
+.next-btn:hover{background:#000;transform:translateY(-1px)}
+
+.loading{text-align:center;padding:48px 20px;color:var(--ink2)}
+.spinner{width:34px;height:34px;border:3px solid #E5E7EB;border-top-color:var(--ink);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.complete{text-align:center;padding:28px 20px;background:var(--card);border-radius:var(--radius);box-shadow:var(--sh)}
+.complete-emoji{font-size:3.5rem;margin-bottom:12px}
+.complete h2{font-size:1.7rem;font-weight:800;margin-bottom:6px}
+.complete-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.stat-card{background:#F9FAFB;border-radius:12px;padding:12px 8px}
+.stat-card .n{font-size:1.6rem;font-weight:800;color:var(--ink)}
+.stat-card .l{font-size:.74rem;color:var(--ink2);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.band{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:700;font-size:.86rem;margin-top:4px}
+.band-dev{background:#FEF3C7;color:#92400E}
+.band-prog{background:#DBEAFE;color:#1E3A8A}
+.band-mast{background:#D1FAE5;color:#064E3B}
+.btn{padding:13px 22px;background:var(--ink);color:#FFF;border:none;border-radius:12px;
+  font-weight:700;cursor:pointer;font-family:inherit;font-size:.98rem;margin:4px}
+.btn.ghost{background:#FFF;color:var(--ink);border:2px solid var(--bdr)}
+
+.mastered{text-align:center;padding:38px 20px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:var(--radius);box-shadow:var(--sh)}
+.mastered .trophy{font-size:4.5rem;margin-bottom:12px;animation:bounce 1.5s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.mastered h2{font-size:1.85rem;color:#78350F;margin-bottom:6px}
+.mastered p{color:#92400E;font-size:1.05rem;margin-bottom:16px}
+
+.err{background:var(--bad-l);border:1px solid var(--bad-b);color:#7F1D1D;padding:14px 16px;border-radius:12px;margin:12px 0;font-size:.94rem}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HOME -->
+  <div id="view-home" class="view active">
+    <div class="header">
+      <span class="badge" id="grade-badge">Grade · Adaptive Learning</span>
+      <h1>Learn until you master it.</h1>
+      <p class="sub">Every question adapts. Reach 95% accuracy to master each subject.</p>
+    </div>
+
+    <div class="curriculum-toggle">
+      <button id="toggle-ontario" class="active" onclick="setCurriculum('ontario')"><span class="flag">🍁</span>Ontario</button>
+      <button id="toggle-cbse" onclick="setCurriculum('cbse')"><span class="flag">🇮🇳</span>CBSE</button>
+    </div>
+
+    <div class="mastery">
+      <div class="mastery-top">
+        <span class="mastery-label" id="curr-label">Ontario · Overall Mastery</span>
+        <span class="mastery-pct" id="overall-pct">0%</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="overall-bar" style="width:0%"></div></div>
+    </div>
+
+    <p class="sub" style="margin-bottom:14px" id="pick-sub">Pick a subject to begin.</p>
+    <div class="subjects" id="subjects-grid"></div>
+
+    <div class="howto">
+      🎯 <span class="target">Target: 95% accuracy per subject (min 20 questions)</span><br>
+      <b>How this works:</b> Answer → get a lesson → next question adjusts difficulty. Master a subject to earn the 🏆. Curricula and progress are tracked separately.
+    </div>
+  </div>
+
+  <!-- LEARN -->
+  <div id="view-learn" class="view">
+    <div class="learn-top">
+      <button class="back" onclick="backToHome()">← Home</button>
+      <div class="pills">
+        <span class="pill" id="learn-curric-pill">Ontario</span>
+        <span class="pill" id="learn-pill" style="background:var(--ink);color:#fff"></span>
+      </div>
+    </div>
+    <div class="session-bar">
+      <div class="stat">Q<b id="q-num">1</b></div>
+      <div class="stat">Lv<b id="q-level">1</b></div>
+      <div class="stat">Score <b id="q-score">0/0</b></div>
+      <div class="stat">Acc <b id="q-acc">0%</b></div>
+    </div>
+    <div id="learn-content"></div>
+  </div>
+
+  <!-- COMPLETE -->
+  <div id="view-complete" class="view">
+    <div class="complete">
+      <div class="complete-emoji" id="c-emoji">🎉</div>
+      <h2 id="c-title">Session Complete!</h2>
+      <p class="sub" id="c-subtitle">Great work!</p>
+      <div class="complete-stats">
+        <div class="stat-card"><div class="n" id="c-correct">0</div><div class="l">Correct</div></div>
+        <div class="stat-card"><div class="n" id="c-total">0</div><div class="l">Answered</div></div>
+        <div class="stat-card"><div class="n" id="c-acc">0%</div><div class="l">Accuracy</div></div>
+      </div>
+      <div class="band" id="c-band">Developing</div>
+      <div style="margin-top:22px">
+        <button class="btn" onclick="replaySubject()">Keep Going →</button>
+        <button class="btn ghost" onclick="backToHome()">← Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MASTERED -->
+  <div id="view-mastered" class="view">
+    <div class="mastered">
+      <div class="trophy">🏆</div>
+      <h2>Subject Mastered!</h2>
+      <p>Outstanding achievement!</p>
+      <button class="btn" onclick="backToHome()">Pick Another Subject →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── SUBJECT DEFINITIONS ─────────────────────── */
+const SUBJECTS = {
+  ontario: [
+    { key:'math',    label:'Mathematics', icon:'🔢', desc:'Numbers, shapes, patterns', color:'math' },
+    { key:'science', label:'Science',     icon:'🔬', desc:'Living things, matter, energy', color:'sci' },
+    { key:'reading', label:'Reading',     icon:'📖', desc:'Phonics, comprehension', color:'read' },
+    { key:'writing', label:'Writing',     icon:'✏️', desc:'Sentences, grammar, stories', color:'write' }
+  ],
+  cbse: [
+    { key:'math',    label:'Mathematics', icon:'🔢', desc:'NCERT Math (Indian contexts, ₹)', color:'math' },
+    { key:'evs',     label:'EVS',         icon:'🌍', desc:'Environmental Studies', color:'evs' },
+    { key:'english', label:'English',     icon:'📖', desc:'NCERT Marigold', color:'eng' },
+    { key:'hindi',   label:'हिंदी',         icon:'🇮🇳', desc:'व्याकरण व लेखन', color:'hin' }
+  ]
+};
+
+/* ── STATE ──────────────────────────────────── */
+const STORE_KEY = 'learn_progress_v2';
+const MASTERY_THRESHOLD = 0.95;
+const MIN_Q_FOR_MASTERY = 20;
+
+let GRADE = '2';
+let state = {
+  curriculum: 'ontario',    // 'ontario' | 'cbse'
+  progress: {},             // { ontario: {math:{...}, ...}, cbse: {math:{...}, ...} }
+  current: null,
+  session: null,
+  currentQ: null,
+  answered: false
+};
+
+function defaultSubjProgress(){ return { correct:0, total:0, level:1, mastered:false, recent:[] }; }
+function initProgress(){
+  ['ontario','cbse'].forEach(c => {
+    if (!state.progress[c]) state.progress[c] = {};
+    SUBJECTS[c].forEach(s => {
+      if (!state.progress[c][s.key]) state.progress[c][s.key] = defaultSubjProgress();
+    });
+  });
+}
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify({progress:state.progress, curriculum:state.curriculum})); }
+function load(){
+  try{
+    const s = localStorage.getItem(STORE_KEY);
+    if(s){
+      const d = JSON.parse(s);
+      if (d.progress) state.progress = d.progress;
+      if (d.curriculum) state.curriculum = d.curriculum;
+    }
+  }catch(e){}
+  initProgress();
+}
+
+/* ── VIEWS ──────────────────────────────────── */
+function show(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+}
+
+function setCurriculum(c){
+  state.curriculum = c;
+  document.getElementById('toggle-ontario').classList.toggle('active', c==='ontario');
+  document.getElementById('toggle-cbse').classList.toggle('active', c==='cbse');
+  save();
+  refreshHome();
+}
+
+function refreshHome(){
+  const c = state.curriculum;
+  const subjects = SUBJECTS[c];
+  const label = c==='ontario' ? 'Ontario' : 'CBSE';
+  document.getElementById('curr-label').textContent = label + ' · Overall Mastery';
+
+  // Render subject cards
+  const grid = document.getElementById('subjects-grid');
+  grid.innerHTML = subjects.map(s => {
+    const p = state.progress[c][s.key] || defaultSubjProgress();
+    const acc = p.total ? Math.round((p.correct/p.total)*100) : 0;
+    return `
+      <div class="subject ${p.mastered?'mastered':''}" style="border-top:4px solid var(--${s.color})" onclick="startSubject('${s.key}')">
+        <span class="subject-icon">${s.icon}</span>
+        <div class="subject-name">${s.label}</div>
+        <div class="subject-desc">${s.desc}</div>
+        <div class="subject-progress">
+          <div class="bar"><div class="bar-fill" style="width:${acc}%;background:var(--${s.color})"></div></div>
+          <span>${acc}%</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Overall
+  let sum=0, n=0;
+  subjects.forEach(s => {
+    const p = state.progress[c][s.key];
+    sum += p.total ? (p.correct/p.total)*100 : 0;
+    n++;
+  });
+  const overall = Math.round(sum/n);
+  document.getElementById('overall-pct').textContent = overall+'%';
+  document.getElementById('overall-bar').style.width = overall+'%';
+}
+
+function startSubject(subjectKey){
+  state.current = subjectKey;
+  state.session = { qNum:0, correct:0, total:0 };
+  state.answered = false;
+  const c = state.curriculum;
+  const subj = SUBJECTS[c].find(s => s.key === subjectKey);
+  document.getElementById('learn-curric-pill').textContent = c==='ontario'?'🍁 Ontario':'🇮🇳 CBSE';
+  document.getElementById('learn-pill').textContent = subj.label;
+  show('learn');
+  loadNextQuestion();
+}
+
+function backToHome(){ refreshHome(); show('home'); }
+function replaySubject(){ startSubject(state.current); }
+
+function adjustLevel(correct){
+  const p = state.progress[state.curriculum][state.current];
+  if (correct && p.level < 5) p.level = Math.min(5, p.level + (Math.random() < 0.6 ? 1 : 0));
+  if (!correct && p.level > 1) p.level = Math.max(1, p.level - 1);
+}
+
+async function api(path, body){
+  const opts = body ? { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) } : {};
+  const r = await fetch(path, opts);
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.error || 'Request failed');
+  return d;
+}
+
+async function loadNextQuestion(){
+  const p = state.progress[state.curriculum][state.current];
+  state.session.qNum++;
+  state.answered = false;
+  const content = document.getElementById('learn-content');
+  content.innerHTML = `<div class="loading"><div class="spinner"></div>Creating your next question…</div>`;
+  updateSessionBar();
+  try{
+    const q = await api('/api/question', {
+      subject: state.current,
+      curriculum: state.curriculum,
+      level: p.level,
+      recent: p.recent.slice(-8)
+    });
+    state.currentQ = q;
+    p.recent.push(q.question);
+    if (p.recent.length > 20) p.recent.shift();
+    renderQuestion(q);
+  } catch(e){
+    content.innerHTML = `<div class="err">Couldn't load question: ${e.message}<br><button class="btn" style="margin-top:10px" onclick="loadNextQuestion()">Retry</button></div>`;
+  }
+}
+
+function renderQuestion(q){
+  const p = state.progress[state.curriculum][state.current];
+  document.getElementById('learn-content').innerHTML = `
+    <div class="q-card">
+      <div class="q-meta">Q${state.session.qNum} · Level ${p.level} · ${escapeHTML(q.concept||'')}</div>
+      <div class="q-text">${escapeHTML(q.question)}</div>
+      <div class="choices">
+        ${q.choices.map((c,i)=>`
+          <button class="choice" data-i="${i}" onclick="pickChoice(${i})">
+            <span class="letter">${String.fromCharCode(65+i)}</span>${escapeHTML(c)}
+          </button>`).join('')}
+      </div>
+      <button class="hint-btn" id="hint-btn" onclick="showHint()">💡 Need a hint?</button>
+      <div class="hint-box" id="hint-box">${escapeHTML(q.hint||'')}</div>
+    </div>
+    <div id="lesson-slot"></div>
+  `;
+}
+
+function showHint(){
+  document.getElementById('hint-box').classList.add('show');
+  document.getElementById('hint-btn').style.display='none';
+}
+
+function pickChoice(i){
+  if (state.answered) return;
+  state.answered = true;
+  const q = state.currentQ;
+  const correct = (i === q.correctIndex);
+
+  document.querySelectorAll('.choice').forEach(b => {
+    b.disabled = true;
+    const idx = Number(b.dataset.i);
+    if (idx === q.correctIndex) b.classList.add('correct');
+    else if (idx === i) b.classList.add('wrong');
+  });
+
+  state.session.total++;
+  const p = state.progress[state.curriculum][state.current];
+  p.total++;
+  if (correct){ state.session.correct++; p.correct++; }
+  adjustLevel(correct);
+  save();
+  updateSessionBar();
+
+  const slot = document.getElementById('lesson-slot');
+  slot.innerHTML = `<div class="loading"><div class="spinner"></div>Building your lesson…</div>`;
+  api('/api/lesson', {
+    subject: state.current,
+    curriculum: state.curriculum,
+    question: q.question,
+    choices: q.choices,
+    correctIndex: q.correctIndex,
+    userIndex: i,
+    concept: q.concept
+  }).then(lesson => {
+    slot.innerHTML = `
+      <div class="lesson ${correct?'ok':'wrong'}">
+        <div class="lesson-headline">${escapeHTML(lesson.headline)}</div>
+        <div class="lesson-text">${escapeHTML(lesson.explanation)}</div>
+        <div class="lesson-tip">${escapeHTML(lesson.tip)}</div>
+      </div>
+      <button class="next-btn" onclick="handleNext()">Next Question →</button>`;
+  }).catch(e=>{
+    slot.innerHTML = `<div class="err">Lesson unavailable: ${e.message}</div>
+      <button class="next-btn" onclick="handleNext()">Next Question →</button>`;
+  });
+}
+
+function handleNext(){
+  const p = state.progress[state.curriculum][state.current];
+  const acc = p.total ? p.correct/p.total : 0;
+  if (p.total >= MIN_Q_FOR_MASTERY && acc >= MASTERY_THRESHOLD){
+    p.mastered = true; save();
+    show('mastered'); return;
+  }
+  if (state.session.qNum >= 10){ endSession(); return; }
+  loadNextQuestion();
+}
+
+function endSession(){
+  const s = state.session;
+  const acc = s.total ? Math.round((s.correct/s.total)*100) : 0;
+  document.getElementById('c-correct').textContent = s.correct;
+  document.getElementById('c-total').textContent = s.total;
+  document.getElementById('c-acc').textContent = acc+'%';
+  const band = document.getElementById('c-band');
+  band.className = 'band ' + (acc>=95?'band-mast':acc>=75?'band-prog':'band-dev');
+  band.textContent = acc>=95?'Mastery Level':acc>=75?'Progressing':'Developing';
+  document.getElementById('c-emoji').textContent = acc>=95?'🏆':acc>=75?'⭐':'💪';
+  document.getElementById('c-title').textContent = acc>=95?'Amazing!':acc>=75?'Great work!':'Good try!';
+  show('complete');
+}
+
+function updateSessionBar(){
+  const s = state.session; const p = state.progress[state.curriculum][state.current];
+  document.getElementById('q-num').textContent = s.qNum;
+  document.getElementById('q-level').textContent = p.level;
+  document.getElementById('q-score').textContent = `${s.correct}/${s.total}`;
+  document.getElementById('q-acc').textContent = (s.total?Math.round((s.correct/s.total)*100):0)+'%';
+}
+
+function escapeHTML(s){ return String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ── INIT ───────────────────────────────────── */
+(async function init(){
+  try{
+    const cfg = await api('/api/config');
+    GRADE = String(cfg.grade);
+    document.getElementById('grade-badge').textContent = `Grade ${GRADE} · Adaptive Learning`;
+    document.title = `Grade ${GRADE} Learn & Master`;
+  }catch(e){}
+  load();
+  setCurriculum(state.curriculum);
+})();
+</script>
+</body>
+</html>
