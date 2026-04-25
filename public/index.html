@@ -35,12 +35,12 @@ h1{font-size:2.15rem;font-weight:800;margin:14px 0 8px;letter-spacing:-.02em}
 
 /* ── CURRICULUM TOGGLE ───────────────────────── */
 .curriculum-toggle{display:flex;gap:0;background:var(--card);border:1px solid var(--bdr);
-  border-radius:999px;padding:4px;margin:0 auto 22px;max-width:360px;box-shadow:var(--sh)}
-.curriculum-toggle button{flex:1;padding:10px 18px;border:none;background:transparent;
-  border-radius:999px;cursor:pointer;font-weight:700;font-size:.92rem;color:var(--ink2);
-  font-family:inherit;transition:.2s}
+  border-radius:999px;padding:4px;margin:0 auto 22px;max-width:480px;box-shadow:var(--sh)}
+.curriculum-toggle button{flex:1;padding:10px 12px;border:none;background:transparent;
+  border-radius:999px;cursor:pointer;font-weight:700;font-size:.88rem;color:var(--ink2);
+  font-family:inherit;transition:.2s;white-space:nowrap}
 .curriculum-toggle button.active{background:var(--ink);color:#FFF;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.curriculum-toggle .flag{margin-right:6px}
+.curriculum-toggle .flag{margin-right:5px}
 
 .mastery{background:var(--card);border:1px solid var(--bdr);border-radius:var(--radius);
   padding:18px 22px;margin-bottom:20px;box-shadow:var(--sh)}
@@ -157,6 +157,7 @@ h1{font-size:2.15rem;font-weight:800;margin:14px 0 8px;letter-spacing:-.02em}
     <div class="curriculum-toggle">
       <button id="toggle-ontario" class="active" onclick="setCurriculum('ontario')"><span class="flag">🍁</span>Ontario</button>
       <button id="toggle-cbse" onclick="setCurriculum('cbse')"><span class="flag">🇮🇳</span>CBSE</button>
+      <button id="toggle-montessori" onclick="setCurriculum('montessori')"><span class="flag">🌿</span>Montessori</button>
     </div>
 
     <div class="mastery">
@@ -239,6 +240,15 @@ const SUBJECTS = {
     { key:'evs',     label:'EVS',         icon:'🌍', desc:'Environmental Studies', color:'evs' },
     { key:'english', label:'English',     icon:'📖', desc:'NCERT Marigold', color:'eng' },
     { key:'hindi',   label:'हिंदी',         icon:'🇮🇳', desc:'व्याकरण व लेखन', color:'hin' }
+  ],
+  montessori: [
+    { key:'math',      label:'Mathematics',   icon:'🔢', desc:'Stamp game, fractions, money', color:'math' },
+    { key:'language',  label:'Language Arts', icon:'📖', desc:'Phonics, grammar, writing',    color:'read' },
+    { key:'geometry',  label:'Geometry',      icon:'📐', desc:'Shapes, lines, solids',         color:'write' },
+    { key:'geography', label:'Geography',     icon:'🌍', desc:'Continents, Canada, landforms', color:'evs' },
+    { key:'biology',   label:'Biology',       icon:'🦋', desc:'Plants, animals, living things', color:'sci' },
+    { key:'history',   label:'History & Time',icon:'🕐', desc:'Clock, calendar, Roman numerals', color:'hin' },
+    { key:'arts',      label:'Creative Expression', icon:'🎨', desc:'Colours, colour wheel',    color:'eng' }
   ]
 };
 
@@ -259,7 +269,7 @@ let state = {
 
 function defaultSubjProgress(){ return { correct:0, total:0, level:1, mastered:false, recent:[] }; }
 function initProgress(){
-  ['ontario','cbse'].forEach(c => {
+  ['ontario','cbse','montessori'].forEach(c => {
     if (!state.progress[c]) state.progress[c] = {};
     SUBJECTS[c].forEach(s => {
       if (!state.progress[c][s.key]) state.progress[c][s.key] = defaultSubjProgress();
@@ -289,6 +299,7 @@ function setCurriculum(c){
   state.curriculum = c;
   document.getElementById('toggle-ontario').classList.toggle('active', c==='ontario');
   document.getElementById('toggle-cbse').classList.toggle('active', c==='cbse');
+  document.getElementById('toggle-montessori').classList.toggle('active', c==='montessori');
   save();
   refreshHome();
 }
@@ -296,7 +307,7 @@ function setCurriculum(c){
 function refreshHome(){
   const c = state.curriculum;
   const subjects = SUBJECTS[c];
-  const label = c==='ontario' ? 'Ontario' : 'CBSE';
+  const label = c==='ontario' ? 'Ontario' : c==='cbse' ? 'CBSE' : 'Montessori';
   document.getElementById('curr-label').textContent = label + ' · Overall Mastery';
 
   // Render subject cards
@@ -334,7 +345,7 @@ function startSubject(subjectKey){
   state.answered = false;
   const c = state.curriculum;
   const subj = SUBJECTS[c].find(s => s.key === subjectKey);
-  document.getElementById('learn-curric-pill').textContent = c==='ontario'?'🍁 Ontario':'🇮🇳 CBSE';
+  document.getElementById('learn-curric-pill').textContent = c==='ontario'?'🍁 Ontario':c==='cbse'?'🇮🇳 CBSE':'🌿 Montessori';
   document.getElementById('learn-pill').textContent = subj.label;
   show('learn');
   loadNextQuestion();
