@@ -165,7 +165,74 @@ data-residency terms permit, and internal tooling that supports cleared Canadian
 staff. Long-term federal IT play remains: qualify for TBIPS at the next refresh with cleared
 Canadian resources.
 
-## 3. Risks & guardrails
+## 2c. RFSA deep-dive and qualification game plan
+
+### How RFSAs actually work
+
+A **Request for Supply Arrangement (RFSA)** is not a contract competition — it is a
+pre-qualification gate. Qualifying makes you an **SA Holder**: you get invited to bid on
+"call-ups" / "RFPs against the SA" that are often *never publicly posted* (e.g., DND TBIPS
+RFPs are emailed directly to qualified holders). An SA guarantees **zero revenue** but is the
+admission ticket; without it, entire markets (IT services, furniture, staffing, translation)
+are invisible and closed. Several vehicles are **mandatory methods of supply** — federal
+departments are required to buy through them.
+
+As of June 10, 2026 there are **102 open RFSAs**. The ones that matter for us, all accepting
+new suppliers on ongoing/quarterly cycles:
+
+| Vehicle | Sol. # | Scope | Open until | Notes |
+|---|---|---|---|---|
+| **ProServices** | E60ZT-180024/C | IT **and** non-IT professional services **below** the CKFTA threshold (~$123K) | Jul 4, 2028 | Lowest barrier; resource/resume-based qualification via CPSS ePortal; quarterly refresh. **Target #1** |
+| **TSPS (task-based)** | E60ZT-18TSPS/D | Non-IT professional services above threshold | Jul 4, 2028 | Quarterly submission windows aligned to fiscal quarters |
+| **TBIPS** | EN578-170432/D | IT professional services above threshold | Jul 4, 2028 | Continuous refresh; clearance NOT needed to bid the RFSA, needed at contract stage |
+| **SBIPS** | EN537-05IT01/N | Solution-based (outcome) IT engagements | Jul 4, 2028 | Heavier corporate requirements; later-stage target |
+| **THS (Temporary Help Services NCR)** | EN578-172870/D | Staffing across 14 streams, NCR | Mar 31, 2028 | Permanent notice, quarterly evaluations, no cap on number of SA holders |
+| **Translation Services** | EN966-140305 (WS5665734815) | Official-languages translation, 70 fields, tiered by capacity | Apr 29, 2031 | Qualify per language pair/field/tier; certified-translator resources |
+| **Media Monitoring** | EN578-191713 reissue | 5 streams of monitoring/analysis | Dec 30, 2028 | Gate: 2 yrs bidder-own experience — Phase-2 target |
+| **PASS (audit services)** | E60ZQ-180001/D | Internal audit / financial management | Ongoing | Only if we add CPA resources |
+| **Parks Canada Exhibits** | 5P300-23-0156/A | PM, content, writing, design, fabrication (à la carte) | Perpetual | Email/fax submission, not Ariba |
+| **SaaS Method of Supply / SLSA** | EN578-191593F / SLSA | Software resale to GC | Sep 2028 | Needs publisher/OEM agreements — pairs with a reseller strategy |
+
+### Game plan
+
+**Step 0 — Accounts (week 1).** PBN + CanadaBuys/SAP Ariba registration, **plus a CPSS
+e-Portal supplier account** (ProServices/TSPS/THS/PASS submissions go through CPSS, not
+Ariba). Click "follow this notice" on each target RFSA to receive amendments.
+
+**Step 1 — ProServices qualification (submit within the current quarterly window).**
+Qualification is per *category × level × region*. For each category we propose a named
+resource whose resume demonstrably meets the grid (education, certifications, years of
+relevant experience). Strategy: inventory our people (and contracted associates — consultants
+we have agreements with count as proposed resources), map them to ProServices categories,
+start with 3–6 categories we can defend. AI role: category mapping, resume-to-grid compliance
+matrices, gap analysis.
+
+**Step 2 — TSPS and/or TBIPS (next quarterly window).** Same resource-grid mechanics plus
+corporate requirements. File the **Contract Security Program** paperwork early so personnel
+Reliability screenings are progressing while qualification is evaluated (bidding the RFSA
+itself requires no clearance).
+
+**Step 3 — THS NCR (if staffing play desired).** 14 streams of admin/professional temp
+staffing; quarterly evaluation; unlimited holders. Classic recruiting-margin business; AI
+role: candidate matching, grid compliance, rate benchmarking.
+
+**Step 4 — Translation RFSA (once 2–3 certified translators are signed).** Tier selection by
+realistic daily capacity; verify the SA's machine-translation/confidentiality clauses before
+using AI in delivery.
+
+**Step 5 — Post-qualification motion (the actual business).** Being a holder only produces
+revenue if we bid call-ups relentlessly: keep contact details current (invitations arrive by
+email), respond to every relevant RFP-against-SA, track rates we lose at, and request
+debriefs. AI role: monitor notices, draft technical responses, maintain the bid library,
+track win/loss analytics.
+
+**Sequencing logic:** ProServices first because it is below-threshold (smaller, faster
+contracts — exactly where a new supplier wins first references), IT + non-IT in one vehicle,
+and its quarterly refresh means a rejected submission can be fixed and resubmitted within
+~90 days. Wins there create the past-performance record that TBIPS/TSPS/SBIPS call-up bids
+score points on.
+
+
 
 | Risk | Mitigation |
 |---|---|
