@@ -232,7 +232,65 @@ and its quarterly refresh means a rejected submission can be fixed and resubmitt
 ~90 days. Wins there create the past-performance record that TBIPS/TSPS/SBIPS call-up bids
 score points on.
 
+## 2d. Product-supply tenders with a dealer partner
 
+As of June 10, 2026: **227 open-bidding goods tenders** (not locked behind supply
+arrangements), 131 closing within 45 days. Goods RFPs are mostly lowest-priced-compliant —
+a reseller with distributor pricing can win without corporate service history. Lanes, by fit:
+
+### Lane 1 — DND commodity spares & equipment (volume play)
+DND publishes a continuous stream of supply-and-deliver RFPs, many repeating monthly:
+material handling equipment, construction engineering equipment, vehicular/HLVW spares,
+kitchen spares, tires (CF118, AC140), pumps, valves, hoses, circuit breakers, LED lamps,
+chainsaws, mechanic creepers, tent components. Delivery usually to Edmonton/Montréal depots;
+region of opportunity often *Canada* or *World*. Win mechanics: quote OEM/NSN part numbers
+through the dealer's distribution accounts; lowest compliant price wins. Thin margin,
+recurring flow.
+**Caution — Controlled Goods:** military-technical items (NVG spares, armoured-vehicle and
+submarine spares, weapons accessories) require **Controlled Goods Program registration**;
+skip these until/unless we register.
+
+### Lane 2 — Standing offers for recurring supply (durable play)
+Win once, supply on call-ups for 1–3 years at pre-set prices. Open now:
+Aluminium Extrusions NMSO (Canada-wide, closes ~Jun 23), RMSO Atlantic Lumber (Jun 19),
+RMSO Meat/Fish/Poultry Atlantic (Jun 23), Bakery products QC (Jul 3), Flags and Pennants
+(Canada, Jun 25), Knives SO (Jul 3), RFSO Vests (Jul 9), Parkas & Trousers RFSO (Jul 20),
+Environmental Control Units (Jul 8), Small Arms Cleaning Kits (Jul 17), Diesel/Gasoline/
+Heating Fuel RFSO (Jun 16). Food requires CFIA-compliant suppliers; fuel requires delivery
+infrastructure — choose by the dealer's actual lines.
+
+### Lane 3 — Apparel & uniforms
+House of Commons made-to-measure uniforms (Jun 17), Boots Congress (Jun 22), Jeans Male
+(Jul 3), Parkas/Trousers, Vests. **Caution:** DND/RCMP clothing frequently carries
+Canadian-content (domestic manufacture) clauses — confirm the dealer's supply chain
+qualifies before bidding.
+
+### Lane 4 — IT/AV hardware & simple tech goods
+CRA Headsets & Accessories Canada-wide (Jun 15), Audiovisual Systems Winnipeg (Jun 15),
+Outdoor LED Information Boards (Jun 30), High-Security Safes (Jun 30), Dispatch Consoles
+(Jun 18). Usually requires OEM/distributor authorization letters (e.g., Jabra/Poly for
+headsets) — straightforward if the dealer holds the line card.
+
+### Lane 5 — Goods RFSAs/SOs to qualify under with the dealer (gateway assets)
+High-Density Mobile Shelving (closes Dec 2026), Office Seating refresh (Apr 2027), Office
+Furniture for Workspaces (Apr 2029), Electrical & Electronic Products E60HN-16ELEC
+(Nov 2028), AV Equipment (Jan 2030), Lab & Scientific Equipment E60PV-19EQUI (Jan 2035),
+Dental Supplies E60PV-20DENT (Jun 2032). Qualify once with the dealer's OEM authorizations;
+bid call-ups thereafter.
+
+### Operating model with a dealer partner
+1. **Structure:** we bid as prime (reseller) with the dealer as supply source, or the dealer
+   bids as prime with us running capture/bids for a fee or margin share. Prime-reseller is
+   standard for goods; manufacturers' authorization letters attach where required.
+2. **Bid factory:** parse RFP → dealer quotes cost → add 10–20% margin → compliance check
+   (delivery dates, warranty, Canadian content, certifications) → submit. AI handles parsing,
+   compliance matrices, and bid assembly; the dealer handles sourcing and logistics.
+3. **Bid only where the dealer has genuine distributor pricing** — chasing everything burns
+   time and wins nothing.
+4. **Cadence:** DND commodity RFPs repeat; losing bids still calibrate pricing. Track award
+   notices (winner + price are published) to learn the margin landscape per category.
+
+## 3. Risks & guardrails
 
 | Risk | Mitigation |
 |---|---|
