@@ -123,6 +123,48 @@ EN↔FR draft translation for human revision, report automation, WCAG-compliance
 
 ---
 
+## 2b. Evaluated and rejected/deferred models
+
+### Furniture & goods resale — not easier for a newcomer (SA-gated)
+
+Of 33 furniture-related open notices (June 10, 2026), the large majority are **"RFP against
+Supply Arrangement"** — call-ups restricted to suppliers already pre-qualified under PSPC's
+furniture vehicles (E60PQ-140003 Office Furniture for Workspaces, E60PQ-120001 Office
+Seating, E60HN-21HDMS High-Density Mobile Shelving). A new vendor cannot bid on those
+call-ups at all. Entry path if we want this market:
+
+1. Obtain **authorized-dealer status** with a Canadian furniture OEM (qualification under the
+   furniture SAs effectively requires manufacturer or authorized-dealer standing, compliant
+   product lines, and Canadian-content commitments).
+2. Qualify under the open RFSAs — Office Furniture for Workspaces (open to **Apr 2029**),
+   Office Seating refresh (to **Apr 2027**), HDMS (to **Dec 2026**) — then bid call-ups.
+3. Meanwhile, only a handful of genuinely open, simple supply-and-deliver buys exist at any
+   time (e.g., RCMP COTS van shelving RFSO closing Jun 22, RCN rotary chairs, CRA emergency
+   cabinet replenishment) — viable as one-off resale plays, but thin margins against
+   established dealers, and several are PSIB (Indigenous business) conditional set-asides.
+
+**Verdict:** administratively simpler per-bid, but the market is fenced by supply arrangements
+and dealer networks. Defer unless we sign an OEM dealer agreement.
+
+### Offshore IT engineering teams — blocked for federal IT services
+
+Verified against live TBIPS solicitations (e.g., ISC Oracle/MS-SQL DBA support; DND Help
+Desk/Ops Support): these require (a) the bidder to already hold a **TBIPS Supply Arrangement**
+in the right tier/region/category, (b) **Facility Security Clearance at SECRET** for the
+company, (c) **personnel security screening at SECRET (or minimum Reliability) for each named
+resource**, (d) Protected-B document safeguarding, and often (e) on-site presence at a
+specified Canadian government location. Offshore engineers cannot obtain Canadian personnel
+security clearances, and resources are proposed by name with verifiable references — staff
+substitution with uncleared offshore labour would breach the contract. The Policy on
+Reciprocal Procurement further restricts many solicitations to Canadian suppliers.
+
+**Verdict:** the "win federal IT tender, fulfill with overseas engineers" model is
+non-viable for federal IT *services*. Offshore capacity can still be used legitimately for:
+private-sector/municipal subcontracts without security clauses, product/SaaS components where
+data-residency terms permit, and internal tooling that supports cleared Canadian delivery
+staff. Long-term federal IT play remains: qualify for TBIPS at the next refresh with cleared
+Canadian resources.
+
 ## 3. Risks & guardrails
 
 | Risk | Mitigation |
