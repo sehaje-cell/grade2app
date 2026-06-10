@@ -22,6 +22,17 @@ IRB immigration/refugee hearings, in Montreal/Ottawa/Atlantic, Toronto/GTA, or V
 Edmonton/Winnipeg regions. Any team member with client-facing professional experience
 (social work, education, healthcare, HR, community services) can apply individually.
 
+**Important — individual contracts only.** The NPP and application form make this a
+person-by-person procurement: the applicant's own resume, proof of age, proof of
+citizenship/work status, first-person behavioural answers, and a personal oral interview.
+A company cannot bid to supply a team; assignments are distributed among qualified DRs
+individually. The "team play" is parallel applications by each qualified person — contracts
+and revenue belong to those individuals, not the firm. (Open question to ask
+dr.rd@irb-cisr.gc.ca before bidding: whether an individual may contract through their
+personal corporation.) For a true vendor/prime model where the company holds the contract,
+target instead: StatCan ESL training, AVAYA training, Translation RFSA, Parks Canada
+Exhibits RFSA.
+
 ### ⚠️ Winnable WITH HIRING (mandatory criteria met through qualified personnel, not company history)
 
 | Tender | Gate | Deadline |
